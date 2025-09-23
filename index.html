@@ -4,165 +4,207 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dharm Patel — Portfolio</title>
-  <meta name="description" content="Dharm Patel — IT Project Manager & Full‑Stack Developer portfolio, projects, and experience." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="description" content="Dharm Patel — IT Project Manager & Full-Stack Developer portfolio, projects, and experience." />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind build -->
+  <link rel="stylesheet" href="public/styles.css">
+
+  <!-- Motion & interactions -->
+  <script type="module" src="solarflux.js" defer></script>
+  <!-- Your existing three.js laptop module can remain, defer too -->
   <script type="module" src="laptop.js" defer></script>
 
+  <meta name="color-scheme" content="dark">
 </head>
-<body>
+<body class="min-h-screen bg-canvas text-text-primary font-body sf-orbits relative">
+  <!-- Orbit canvas layer -->
+  <div class="absolute inset-0 sf-orbits z-0"></div>
+
   <!-- Top Bar -->
-  <header class="topbar">
-    <div class="container nav" role="navigation" aria-label="Primary">
-      <div class="brand">
-        <span>Dharm Patel</span>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+  <header class="sticky top-0 z-50 backdrop-blur border-b border-border-soft/50 bg-[rgba(15,23,42,0.55)]">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="text-[18px] font-display font-extrabold tracking-tight text-text-primary">Dharm Patel</div>
+      <nav class="flex gap-6 text-text-secondary" role="navigation" aria-label="Primary">
+        <a href="#about" class="hocus:text-text-primary transition">About</a>
+        <a href="#projects" class="hocus:text-text-primary transition">Projects</a>
+        <a href="#experience" class="hocus:text-text-primary transition">Experience</a>
+        <a href="#contact" class="hocus:text-text-primary transition">Contact</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">IT Project Manager · Full‑Stack Developer · Gaming Fanatic</div>
-        <h1 class="title">Building reliable products and teams that deliver.</h1>
-        <p class="subtitle">I lead cross‑functional squads, translate user insights into roadmaps, and ship scalable web apps. My toolkit spans Agile delivery, React/TypeScript, Python/Flask, and data‑informed decision‑making.</p>
-        <div class="hero-meta">
-          <span class="chip">Agile/Scrum</span>
-          <span class="chip">React · TypeScript</span>
-          <span class="chip">Python · Flask</span>
-          <span class="chip">UX Research</span>
+  <section class="relative z-10">
+    <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div class="animate-enter-bounce" style="animation-delay:100ms">
+        <div class="text-sm uppercase tracking-[0.12em] text-text-muted mb-4">IT Project Manager · Full-Stack Developer · Gaming Fanatic</div>
+        <h1 class="font-display font-extrabold text-[clamp(40px,7vw,64px)] leading-[0.95] tracking-[-0.02em] text-text-primary">
+          Building reliable products and teams that deliver.
+        </h1>
+        <p class="mt-5 text-lg text-text-secondary max-w-xl">
+          I lead cross-functional squads, translate user insights into roadmaps, and ship scalable web apps. My toolkit spans Agile delivery, React/TypeScript, Python/Flask, and data-informed decision-making.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="sf-chip px-3 py-1 text-sm text-text-secondary">Agile/Scrum</span>
+          <span class="sf-chip px-3 py-1 text-sm text-text-secondary">React · TypeScript</span>
+          <span class="sf-chip px-3 py-1 text-sm text-text-secondary">Python · Flask</span>
+          <span class="sf-chip px-3 py-1 text-sm text-text-secondary">UX Research</span>
+        </div>
+        <div class="mt-8 flex gap-3">
+          <button class="sf-btn sf-btn--primary js-ripple" data-ripple-color="#fff">Contact me</button>
+          <a href="#projects" class="sf-btn sf-btn--ghost js-ripple" aria-label="Skip to projects">See projects</a>
         </div>
       </div>
-      <div id="laptop-scene"></div>
+      <div id="laptop-scene" class="min-h-[320px] md:min-h-[420px] rounded-xl bg-[rgba(255,255,255,0.02)] border border-border-soft animate-enter-bounce" style="animation-delay:220ms"></div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">About</h2>
-        <p class="section-desc">Blending product sense with engineering discipline. I’ve managed delivery for cross‑functional teams, improved user satisfaction by 30%, and maintained 99.9% uptime across critical apps.</p>
+  <section id="about" class="relative z-10">
+    <div class="max-w-7xl mx-auto px-6 py-14">
+      <div class="flex items-end justify-between gap-8 flex-wrap">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.01em]">About</h2>
+          <p class="text-text-secondary mt-3 max-w-2xl">
+            Blending product sense with engineering discipline. I’ve managed delivery for cross-functional teams, improved user satisfaction by 30%, and maintained 99.9% uptime across critical apps.
+          </p>
+        </div>
       </div>
-      <div class="grid cols-3">
-        <div class="card">
-          <h3>Project Leadership</h3>
-          <p>Agile planning, stakeholder alignment, risk management, and outcomes‑focused delivery.</p>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-8">
+        <div class="sf-card p-6">
+          <h3 class="font-display font-bold text-xl mb-2">Project Leadership</h3>
+          <p class="text-text-secondary">Agile planning, stakeholder alignment, risk management, and outcomes-focused delivery.</p>
         </div>
-        <div class="card">
-          <h3>Product & UX</h3>
-          <p>User interviews, experiment design, measurement plans, and data‑informed roadmaps.</p>
+        <div class="sf-card p-6">
+          <h3 class="font-display font-bold text-xl mb-2">Product & UX</h3>
+          <p class="text-text-secondary">User interviews, experiment design, measurement plans, and data-informed roadmaps.</p>
         </div>
-        <div class="card">
-          <h3>Full‑Stack Engineering</h3>
-          <p>React/TypeScript front‑ends, Python/Flask services, SQL data models, CI automation.</p>
+        <div class="sf-card p-6">
+          <h3 class="font-display font-bold text-xl mb-2">Full-Stack Engineering</h3>
+          <p class="text-text-secondary">React/TypeScript front-ends, Python/Flask services, SQL data models, CI automation.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Projects -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-desc">A handful of initiatives that showcase delivery, craftsmanship, and measurable impact.</p>
+  <section id="projects" class="relative z-10">
+    <div class="max-w-7xl mx-auto px-6 py-14">
+      <div class="flex items-end justify-between gap-8 flex-wrap">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.01em]">Featured Projects</h2>
+          <p class="text-text-secondary mt-3 max-w-2xl">A handful of initiatives that showcase delivery, craftsmanship, and measurable impact.</p>
+        </div>
       </div>
 
-      <div class="grid cols-3">
+      <div class="grid md:grid-cols-3 gap-6 mt-8">
         <!-- Project 1 -->
-        <article class="card">
-          <div class="badges"><span class="badge">Community Impact Finalist</span><span class="badge">PM · Front‑end</span></div>
-          <h3 style="margin-top:10px">UnHinged</h3>
-          <p>Led Agile delivery for a React/TypeScript + Flask platform with AI conversation generation (Gemma 2B & Llama 3). Designed uptime‑first ops with observability.</p>
-          <div class="project-meta">
-            <div class="meta-left">⚙ React · TypeScript · Flask · SD</div>
-            <div class="meta-right"><a href="https://www.youtube.com/watch?v=hp_7ISEBGRw">Watch Demo→</a></div>
+        <article class="sf-card p-6 flex flex-col gap-3">
+          <div class="flex gap-2 flex-wrap text-xs">
+            <span class="sf-chip px-2 py-1">Community Impact Finalist</span>
+            <span class="sf-chip px-2 py-1">PM · Front-end</span>
+          </div>
+          <h3 class="font-display font-bold text-xl mt-2">UnHinged</h3>
+          <p class="text-text-secondary">Led Agile delivery for a React/TypeScript + Flask platform with AI conversation generation (Gemma 2B & Llama 3). Designed uptime-first ops with observability.</p>
+          <div class="flex items-center justify-between text-sm pt-2 border-t border-border-soft">
+            <div class="text-text-muted">⚙ React · TypeScript · Flask · SD</div>
+            <a class="text-accent hocus:underline" href="https://www.youtube.com/watch?v=hp_7ISEBGRw">Watch Demo →</a>
           </div>
         </article>
 
         <!-- Project 2 -->
-        <article class="card">
-          <div class="badges"><span class="badge">Team Lead</span><span class="badge">E‑commerce</span></div>
-          <h3 style="margin-top:10px">Steami</h3>
-          <p>Game‑library commerce with secure auth, responsive UI, and stakeholder‑driven roadmap. Shipped MVP and iterative releases.</p>
-          <div class="project-meta">
-            <div class="meta-left">🛒 Flask · JS · SQL</div>
-            <div class="meta-right"><a href="#">View repo→</a></div>
+        <article class="sf-card p-6 flex flex-col gap-3">
+          <div class="flex gap-2 flex-wrap text-xs">
+            <span class="sf-chip px-2 py-1">Team Lead</span>
+            <span class="sf-chip px-2 py-1">E-commerce</span>
+          </div>
+          <h3 class="font-display font-bold text-xl mt-2">Steami</h3>
+          <p class="text-text-secondary">Game-library commerce with secure auth, responsive UI, and stakeholder-driven roadmap. Shipped MVP and iterative releases.</p>
+          <div class="flex items-center justify-between text-sm pt-2 border-t border-border-soft">
+            <div class="text-text-muted">🛒 Flask · JS · SQL</div>
+            <a class="text-accent hocus:underline" href="#">View repo →</a>
           </div>
         </article>
 
         <!-- Project 3 -->
-        <article class="card">
-          <div class="badges"><span class="badge">Backend</span><span class="badge">Reliability</span></div>
-          <h3 style="margin-top:10px">Concert Booking</h3>
-          <p>Concurrent seat‑reservation middleware in Java with careful state management. Achieved 99.5% uptime through peak loads.</p>
-          <div class="project-meta">
-            <div class="meta-left">🎟 Java · Concurrency</div>
-            <div class="meta-right"><a href="#">View repo→</a></div>
+        <article class="sf-card p-6 flex flex-col gap-3">
+          <div class="flex gap-2 flex-wrap text-xs">
+            <span class="sf-chip px-2 py-1">Backend</span>
+            <span class="sf-chip px-2 py-1">Reliability</span>
+          </div>
+          <h3 class="font-display font-bold text-xl mt-2">Concert Booking</h3>
+          <p class="text-text-secondary">Concurrent seat-reservation middleware in Java with careful state management. Achieved 99.5% uptime through peak loads.</p>
+          <div class="flex items-center justify-between text-sm pt-2 border-t border-border-soft">
+            <div class="text-text-muted">🎟 Java · Concurrency</div>
+            <a class="text-accent hocus:underline" href="#">View repo →</a>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Experience (Chronological) -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Experience</h2>
-        <p class="section-desc">A concise timeline of roles, leadership, and impact.</p>
+  <!-- Experience -->
+  <section id="experience" class="relative z-10">
+    <div class="max-w-7xl mx-auto px-6 py-14">
+      <div class="flex items-end justify-between gap-8 flex-wrap">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.01em]">Experience</h2>
+          <p class="text-text-secondary mt-3 max-w-2xl">A concise timeline of roles, leadership, and impact.</p>
+        </div>
       </div>
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-when">Aug 2018 – Present</div>
-          <div class="tl-what">
-            <h4>Checkout Supervisor — Woolworths Group</h4>
-            <p>Orchestrated front‑end operations, supervising team of 6 operators; optimized customer flow and training.</p>
+
+      <div class="mt-8 space-y-4">
+        <!-- timeline item -->
+        <div class="sf-card p-5 grid md:grid-cols-[160px_1fr] gap-4">
+          <div class="text-text-muted">Aug 2018 – Present</div>
+          <div>
+            <h4 class="font-display font-bold">Checkout Supervisor — Woolworths Group</h4>
+            <p class="text-text-secondary">Orchestrated front-end operations, supervising team of 6 operators; optimized customer flow and training.</p>
           </div>
         </div>
-        <div class="tl-item">
-          <div class="tl-when">2020 – 2021</div>
-          <div class="tl-what">
-            <h4>League of Legends A Team Manager — Westlake Boys High</h4>
-            <p>Managed competitive seasons (Summer Champs 2020, 2021); scheduling, performance review, and strategy.</p>
+
+        <div class="sf-card p-5 grid md:grid-cols-[160px_1fr] gap-4">
+          <div class="text-text-muted">2020 – 2021</div>
+          <div>
+            <h4 class="font-display font-bold">League of Legends A Team Manager — Westlake Boys High</h4>
+            <p class="text-text-secondary">Managed competitive seasons (Summer Champs 2020, 2021); scheduling, performance review, and strategy.</p>
           </div>
         </div>
-        <div class="tl-item">
-          <div class="tl-when">2022-2024</div>
-          <div class="tl-what">
-            <h4>Events Lead — University of Auckland Esports Club</h4>
-            <p>Organized & scaled gaming events for 100+ students; designed formats to maximize engagement.</p>
+
+        <div class="sf-card p-5 grid md:grid-cols-[160px_1fr] gap-4">
+          <div class="text-text-muted">2022-2024</div>
+          <div>
+            <h4 class="font-display font-bold">Events Lead — University of Auckland Esports Club</h4>
+            <p class="text-text-secondary">Organized & scaled gaming events for 100+ students; designed formats to maximize engagement.</p>
           </div>
         </div>
-        <div class="tl-item">
-          <div class="tl-when">Jan 2022 – Sep 2024</div>
-          <div class="tl-what">
-            <h4>Client Advisor — 0800 Mandep</h4>
-            <p>Coordinated logistics and end‑to‑end event planning with venues and vendors; ensured timely deliveries.</p>
+
+        <div class="sf-card p-5 grid md:grid-cols-[160px_1fr] gap-4">
+          <div class="text-text-muted">Jan 2022 – Sep 2024</div>
+          <div>
+            <h4 class="font-display font-bold">Client Advisor — 0800 Mandep</h4>
+            <p class="text-text-secondary">Coordinated logistics and end-to-end event planning with venues and vendors; ensured timely deliveries.</p>
           </div>
         </div>
-        <div class="tl-item">
-          <div class="tl-when">Jul 2024 – Sep 2024</div>
-          <div class="tl-what">
-            <h4>User Research — Putti Apps</h4>
-            <p>Research initiatives leading to +30% user satisfaction; synthesized insights into roadmap changes.</p>
+
+        <div class="sf-card p-5 grid md:grid-cols-[160px_1fr] gap-4">
+          <div class="text-text-muted">Jul 2024 – Sep 2024</div>
+          <div>
+            <h4 class="font-display font-bold">User Research — Putti Apps</h4>
+            <p class="text-text-secondary">Research initiatives leading to +30% user satisfaction; synthesized insights into roadmap changes.</p>
           </div>
         </div>
-        <div class="tl-item">
-          <div class="tl-when">2022 – Present</div>
-          <div class="tl-what">
-            <h4>Education — University of Auckland</h4>
-            <p>BSc Computer Science (Hons) & BSc IT Management.</p>
+
+        <div class="sf-card p-5 grid md:grid-cols-[160px_1fr] gap-4">
+          <div class="text-text-muted">2022 – Present</div>
+          <div>
+            <h4 class="font-display font-bold">Education — University of Auckland</h4>
+            <p class="text-text-secondary">BSc Computer Science (Hons) & BSc IT Management.</p>
           </div>
         </div>
       </div>
@@ -170,19 +212,21 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Let’s connect</h2>
-        <p class="section-desc">Open to internships and collaborations. The fastest way to reach me is via email.</p>
+  <section id="contact" class="relative z-10">
+    <div class="max-w-7xl mx-auto px-6 py-14">
+      <div class="flex items-end justify-between gap-8 flex-wrap">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl font-extrabold tracking-[-0.01em]">Let’s connect</h2>
+          <p class="text-text-secondary mt-3 max-w-2xl">Open to internships and collaborations. The fastest way to reach me is via email.</p>
+        </div>
       </div>
-      <div class="contact-card">
-        <a class="pill" href="mailto:dharm.pat04@gmail.com">✉️ dharm.pat04@gmail.com</a>
-        <a class="pill" href="tel:+64211651634">📞 +64 21 165 1634</a>
-        <div class="pill">📍 Auckland, New Zealand</div>
+
+      <div class="sf-card p-4 mt-6 flex flex-wrap gap-3">
+        <a class="sf-pill px-4 py-2 text-text-primary js-ripple" href="mailto:dharm.pat04@gmail.com">✉️ dharm.pat04@gmail.com</a>
+        <a class="sf-pill px-4 py-2 text-text-primary js-ripple" href="tel:+64211651634">📞 +64 21 165 1634</a>
+        <div class="sf-pill px-4 py-2 text-text-primary">📍 Auckland, New Zealand</div>
       </div>
     </div>
   </section>
-
 </body>
 </html>

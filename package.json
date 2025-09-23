@@ -1,0 +1,15 @@
+
+{
+    "name": "solarflux",
+    "private": true,
+    "scripts": {
+      "dev": "tailwindcss -i ./styles.css -o ./public/styles.css --watch",
+      "build": "tailwindcss -i ./styles.css -o ./public/styles.css --minify"
+    },
+    "devDependencies": {
+      "tailwindcss": "^3.4.10",
+      "postcss": "^8.4.47",
+      "autoprefixer": "^10.4.20"
+    }
+  }
+  
