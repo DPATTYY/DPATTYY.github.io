@@ -1,69 +1,106 @@
-// Import Three.js from CDN (ES module version)
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js";
+// laptop.js
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.163/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.163/examples/jsm/controls/OrbitControls.js';
 
-let scene, camera, renderer, laptop, clock;
+const container = document.getElementById('laptop-scene');
+let scene, camera, renderer, laptopGroup, clock;
+let targetRotationX = 0;
+let targetRotationY = 0;
+
+init();
+animate();
 
 function init() {
-  const container = document.getElementById("laptop-scene");
-
-  // Scene
   scene = new THREE.Scene();
+  clock = new THREE.Clock();
 
   // Camera
   camera = new THREE.PerspectiveCamera(
-    45,
+    35,
     container.clientWidth / container.clientHeight,
     0.1,
-    1000
+    100
   );
-  camera.position.z = 6;
+  camera.position.set(0, 1.2, 4);
 
   // Renderer
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
   container.appendChild(renderer.domElement);
 
   // Lighting
-  const light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(5, 5, 5);
-  scene.add(light);
-  scene.add(new THREE.AmbientLight(0x404040, 1.2));
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8);
+  hemiLight.position.set(0, 20, 0);
+  scene.add(hemiLight);
+
+  const keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  keyLight.position.set(5, 5, 5);
+  scene.add(keyLight);
+
+  const rimLight = new THREE.DirectionalLight(0x88c0ff, 0.6);
+  rimLight.position.set(-5, 5, -5);
+  scene.add(rimLight);
 
   // Laptop group
-  laptop = new THREE.Group();
+  laptopGroup = new THREE.Group();
+  scene.add(laptopGroup);
 
-  // Base (keyboard part)
-  const baseGeometry = new THREE.BoxGeometry(3, 0.2, 2);
-  const baseMaterial = new THREE.MeshStandardMaterial({ color: 0x3D8D7A });
+  // Base (keyboard section)
+  const baseGeometry = new THREE.BoxGeometry(2, 0.1, 1.2);
+  const baseMaterial = new THREE.MeshStandardMaterial({
+    color: 0x444444,
+    metalness: 0.8,
+    roughness: 0.3,
+  });
   const base = new THREE.Mesh(baseGeometry, baseMaterial);
+  laptopGroup.add(base);
 
   // Screen
-  const screenGeometry = new THREE.BoxGeometry(3, 2, 0.1);
-  const screenMaterial = new THREE.MeshStandardMaterial({ color: 0x222222 });
+  const screenGeometry = new THREE.BoxGeometry(2, 1.2, 0.05);
+  const screenMaterial = new THREE.MeshStandardMaterial({
+    color: 0x111111,
+    metalness: 0.6,
+    roughness: 0.4,
+    emissive: 0x2dd4bf,
+    emissiveIntensity: 0.6,
+  });
   const screen = new THREE.Mesh(screenGeometry, screenMaterial);
-  screen.position.y = 1.1;
-  screen.position.z = -0.9;
-  screen.rotation.x = -Math.PI / 12; // tilt back slightly
+  screen.position.y = 0.65;
+  screen.position.z = -0.6;
+  screen.rotation.x = -Math.PI / 12; // tilted back a bit
+  laptopGroup.add(screen);
 
-  laptop.add(base);
-  laptop.add(screen);
+  // Background plane behind laptop
+  const bgGeometry = new THREE.PlaneGeometry(20, 20);
+  const bgMaterial = new THREE.MeshBasicMaterial({
+    color: 0x0f172a,
+    side: THREE.BackSide,
+  });
+  const background = new THREE.Mesh(bgGeometry, bgMaterial);
+  background.position.z = -10;
+  scene.add(background);
 
-  // Angle laptop (screen facing left)
-  laptop.rotation.y = Math.PI / 6;
-
-  scene.add(laptop);
-
-  // Animation clock
-  clock = new THREE.Clock();
-
-  animate();
+  // Mouse interaction
+  container.addEventListener('mousemove', onMouseMove);
 
   // Handle resize
-  window.addEventListener("resize", () => {
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-  });
+  window.addEventListener('resize', onWindowResize);
+}
+
+function onMouseMove(event) {
+  const rect = container.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width - 0.5;
+  const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+  targetRotationY = x * 0.6; // left/right tilt
+  targetRotationX = -y * 0.3; // up/down tilt
+}
+
+function onWindowResize() {
+  camera.aspect = container.clientWidth / container.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(container.clientWidth, container.clientHeight);
 }
 
 function animate() {
@@ -71,13 +108,12 @@ function animate() {
 
   const elapsed = clock.getElapsedTime();
 
-  // Hover animation (smooth up/down)
-  laptop.position.y = Math.sin(elapsed * 2) * 0.1;
+  // Floating animation
+  laptopGroup.position.y = Math.sin(elapsed * 1.2) * 0.05;
 
-  // Subtle rotation for life-like feel
-  laptop.rotation.y = Math.PI / 6 + Math.sin(elapsed) * 0.05;
+  // Smooth rotation interpolation
+  laptopGroup.rotation.x += (targetRotationX - laptopGroup.rotation.x) * 0.05;
+  laptopGroup.rotation.y += (targetRotationY - laptopGroup.rotation.y) * 0.05;
 
   renderer.render(scene, camera);
 }
-
-init();
