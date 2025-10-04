@@ -46,11 +46,12 @@ buildingsData.forEach((buildingData) => {
   )
 })
 
-console.log('Player will be at:', {
-  x: canvas.width / 2 - 192 / 4 / 2,
-  y: canvas.height / 2 - 68 / 2
-})
-console.log('Buildings created:', buildings)
+// Player debug info
+// console.log('Player will be at:', {
+//   x: canvas.width / 2 - 192 / 4 / 2,
+//   y: canvas.height / 2 - 68 / 2
+// })
+// console.log('Buildings created:', buildings)
 
 const characters = []
 const villagerImg = new Image()
@@ -195,6 +196,9 @@ const renderables = [
   foreground
 ]
 
+// Cache DOM element for building prompt
+const buildingPrompt = document.querySelector('#buildingPrompt')
+
 function animate() {
   const animationId = window.requestAnimationFrame(animate)
   renderables.forEach((renderable) => {
@@ -210,13 +214,9 @@ function animate() {
   // Check for building collision
   checkForBuildingCollision({ buildings, player })
 
-  // Show/hide building prompt
-  const buildingPrompt = document.querySelector('#buildingPrompt')
-  if (player.nearBuilding) {
-    buildingPrompt.style.display = 'block'
-    console.log('Near building:', player.nearBuilding.name)
-  } else {
-    buildingPrompt.style.display = 'none'
+  // Update building prompt (optimized - uses cached element)
+  if (buildingPrompt) {
+    buildingPrompt.style.display = player.nearBuilding ? 'block' : 'none'
   }
 
   if (keys.w.pressed && lastKey === 'w') {
@@ -382,13 +382,8 @@ window.addEventListener('keydown', (e) => {
 
   switch (e.key) {
     case ' ':
-      console.log('SPACE key pressed')
-      console.log('player.nearBuilding:', player.nearBuilding)
-      console.log('isModalOpen:', isModalOpen)
-
       // Check if player is near a building first
       if (player.nearBuilding) {
-        console.log('Attempting to open modal:', player.nearBuilding.modalId)
         openModal(player.nearBuilding.modalId)
         return
       }

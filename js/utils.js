@@ -57,15 +57,10 @@ function checkForBuildingCollision({ buildings, player }) {
 let isModalOpen = false
 
 function openModal(modalId) {
-  console.log('openModal called with:', modalId)
   const modal = document.getElementById(modalId)
-  console.log('Modal element found:', modal)
   if (modal) {
     modal.classList.add('show')
     isModalOpen = true
-    console.log('Modal opened successfully')
-  } else {
-    console.error('Modal not found:', modalId)
   }
 }
 
