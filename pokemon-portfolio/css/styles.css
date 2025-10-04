@@ -1,0 +1,480 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    background-color: #1a1a2e;
+    color: #fff;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Intro Banner */
+#intro-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 2000;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.banner-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 32px;
+    color: #ffd700;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    text-align: center;
+    animation: floatBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes floatBounce {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+#intro-banner.fade-out {
+    animation: fadeOut 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Game Container */
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#phaser-game {
+    width: 100%;
+    height: 100%;
+}
+
+#phaser-game canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Content */
+.modal-content {
+    background: linear-gradient(135deg, #2d3561 0%, #1a1f3a 100%);
+    border: 4px solid #fff;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Close Button */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.modal-close:hover {
+    transform: scale(1.2);
+    color: #ff6b6b;
+}
+
+/* Portfolio Sections */
+.portfolio-section {
+    margin-top: 20px;
+}
+
+.portfolio-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.portfolio-section h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.portfolio-section h4 {
+    font-size: 12px;
+    margin: 15px 0 10px 0;
+    color: #ffd700;
+}
+
+.portfolio-section p {
+    font-size: 10px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+.portfolio-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.portfolio-section ul li {
+    font-size: 10px;
+    line-height: 1.8;
+    padding-left: 20px;
+    position: relative;
+    color: #ddd;
+}
+
+.portfolio-section ul li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #ffd700;
+}
+
+/* Project Cards */
+.project-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #fff;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ffd700;
+    color: #1a1a2e;
+    text-decoration: none;
+    font-size: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.project-card a:hover {
+    background-color: #ffed4e;
+}
+
+/* About Section */
+.about-content {
+    text-align: center;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #ffd700;
+    margin-bottom: 20px;
+    image-rendering: pixelated;
+}
+
+.btn-download {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #ffd700;
+    color: #1a1a2e;
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.btn-download:hover {
+    background-color: #ffed4e;
+}
+
+/* Experience Timeline */
+.experience-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.experience-timeline:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ffd700;
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #fff;
+    border-radius: 4px;
+}
+
+.experience-item:before {
+    content: "";
+    position: absolute;
+    left: -25px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    background-color: #ffd700;
+    border-radius: 50%;
+}
+
+.experience-item .date {
+    display: block;
+    font-size: 9px;
+    color: #ffd700;
+    margin-bottom: 8px;
+}
+
+/* Extras Grid */
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.extra-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #fff;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.extra-card:hover {
+    transform: scale(1.05);
+    border-color: #ffd700;
+}
+
+.extra-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.extra-card a:hover {
+    text-decoration: underline;
+}
+
+/* Dialogue Box (Pokémon-style) */
+.dialogue-box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 700px;
+    background-color: #fff;
+    border: 4px solid #000;
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 999;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: dialogueSlideUp 0.3s ease;
+}
+
+.dialogue-box.hidden {
+    display: none;
+}
+
+@keyframes dialogueSlideUp {
+    from {
+        transform: translateX(-50%) translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+.dialogue-content {
+    position: relative;
+}
+
+#dialogue-text {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #000;
+    min-height: 40px;
+}
+
+.dialogue-arrow {
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+    color: #000;
+    font-size: 16px;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Scrollbar Styling */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #ffd700;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #ffed4e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 20px;
+        max-width: 95%;
+    }
+
+    .portfolio-section h2 {
+        font-size: 16px;
+    }
+
+    .portfolio-section h3 {
+        font-size: 12px;
+    }
+
+    .portfolio-section p,
+    .portfolio-section ul li {
+        font-size: 9px;
+    }
+
+    .extras-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #dialogue-text {
+        font-size: 10px;
+    }
+
+    .banner-text {
+        font-size: 20px;
+        padding: 20px;
+    }
+}
+
+/* Loading Animation */
+@keyframes pixelate {
+    0% {
+        filter: blur(0px);
+    }
+    50% {
+        filter: blur(2px);
+    }
+    100% {
+        filter: blur(0px);
+    }
+}
+
+/* Pixel Art Font Import (Optional - loads from Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
