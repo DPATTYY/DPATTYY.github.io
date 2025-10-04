@@ -37,6 +37,21 @@ collisionsMap.forEach((row, i) => {
 })
 
 
+// Building interaction zones
+// Buildings use screen coordinates directly (no conversion)
+const buildings = []
+buildingsData.forEach((buildingData) => {
+  buildings.push(
+    new Building(buildingData)
+  )
+})
+
+console.log('Player will be at:', {
+  x: canvas.width / 2 - 192 / 4 / 2,
+  y: canvas.height / 2 - 68 / 2
+})
+console.log('Buildings created:', buildings)
+
 const characters = []
 const villagerImg = new Image()
 villagerImg.src = './img/villager/Idle.png'
@@ -168,11 +183,13 @@ const movables = [
   background,
   ...boundaries,
   foreground,
-  ...characters
+  ...characters,
+  ...buildings
 ]
 const renderables = [
   background,
   ...boundaries,
+  ...buildings,
   ...characters,
   player,
   foreground
@@ -186,6 +203,21 @@ function animate() {
 
   let moving = true
   player.animate = false
+
+  // Check if modal is open - if so, pause game
+  if (isModalOpen) return
+
+  // Check for building collision
+  checkForBuildingCollision({ buildings, player })
+
+  // Show/hide building prompt
+  const buildingPrompt = document.querySelector('#buildingPrompt')
+  if (player.nearBuilding) {
+    buildingPrompt.style.display = 'block'
+    console.log('Near building:', player.nearBuilding.name)
+  } else {
+    buildingPrompt.style.display = 'none'
+  }
 
   if (keys.w.pressed && lastKey === 'w') {
     player.animate = true
@@ -350,6 +382,18 @@ window.addEventListener('keydown', (e) => {
 
   switch (e.key) {
     case ' ':
+      console.log('SPACE key pressed')
+      console.log('player.nearBuilding:', player.nearBuilding)
+      console.log('isModalOpen:', isModalOpen)
+
+      // Check if player is near a building first
+      if (player.nearBuilding) {
+        console.log('Attempting to open modal:', player.nearBuilding.modalId)
+        openModal(player.nearBuilding.modalId)
+        return
+      }
+
+      // Otherwise check for character interaction
       if (!player.interactionAsset) return
 
       // beginning the conversation

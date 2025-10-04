@@ -34,3 +34,45 @@ function checkForCharacterCollision({
     }
   }
 }
+
+function checkForBuildingCollision({ buildings, player }) {
+  player.nearBuilding = null
+  // monitor for building collision
+  for (let i = 0; i < buildings.length; i++) {
+    const building = buildings[i]
+
+    if (
+      rectangularCollision({
+        rectangle1: player,
+        rectangle2: building
+      })
+    ) {
+      player.nearBuilding = building
+      break
+    }
+  }
+}
+
+// Modal control variables
+let isModalOpen = false
+
+function openModal(modalId) {
+  console.log('openModal called with:', modalId)
+  const modal = document.getElementById(modalId)
+  console.log('Modal element found:', modal)
+  if (modal) {
+    modal.classList.add('show')
+    isModalOpen = true
+    console.log('Modal opened successfully')
+  } else {
+    console.error('Modal not found:', modalId)
+  }
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId)
+  if (modal) {
+    modal.classList.remove('show')
+    isModalOpen = false
+  }
+}

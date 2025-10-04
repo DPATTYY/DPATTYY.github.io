@@ -81,6 +81,133 @@
         visibility: hidden;
       }
     }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background-color: #2a2a2a;
+      border: 8px solid #fff;
+      box-shadow:
+        0 0 0 4px #000,
+        0 0 0 8px #fff,
+        0 0 0 12px #000,
+        8px 8px 0 12px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 30px;
+      image-rendering: pixelated;
+      color: #fff;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      border-bottom: 4px solid #fff;
+      padding-bottom: 15px;
+    }
+
+    .modal-title {
+      font-size: 24px;
+      color: #FFD700;
+      text-shadow: 3px 3px 0px #000;
+      margin: 0;
+    }
+
+    .modal-close {
+      background-color: #ff4444;
+      border: 4px solid #fff;
+      box-shadow: 0 0 0 2px #000, 0 0 0 4px #fff;
+      color: #fff;
+      font-size: 24px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      text-shadow: 2px 2px 0px #000;
+      transition: all 0.1s;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      background-color: #ff6666;
+      transform: scale(1.1);
+    }
+
+    .modal-close:active {
+      transform: scale(0.95);
+    }
+
+    .modal-body {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #e0e0e0;
+    }
+
+    .modal-body h2 {
+      color: #FFD700;
+      font-size: 18px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    .modal-body p {
+      margin: 10px 0;
+    }
+
+    .modal-body ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .modal-body ul li:before {
+      content: "▸ ";
+      color: #FFD700;
+      font-weight: bold;
+    }
+
+    /* Custom scrollbar for modal */
+    .modal-content::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: #000;
+      border: 2px solid #fff;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: #FFD700;
+      border: 2px solid #000;
+    }
   </style>
 </head>
 
@@ -120,7 +247,74 @@
       padding: 12px;
     "
   ></div>
+
+  <!-- Building Interaction Prompt -->
+  <div
+    id="buildingPrompt"
+    style="
+      background-color: white;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px black solid;
+      padding: 10px 20px;
+      display: none;
+      font-size: 14px;
+    "
+  >
+    Press SPACE to enter
+  </div>
 </div>
+
+<!-- Modals -->
+<div id="aboutMeModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">About Me</h1>
+      <button class="modal-close" onclick="closeModal('aboutMeModal')">X</button>
+    </div>
+    <div class="modal-body">
+      <p>Welcome to my interactive portfolio!</p>
+      <h2>Who I Am</h2>
+      <p>I'm a passionate developer who loves creating unique web experiences. This portfolio combines classic gaming nostalgia with modern web technologies.</p>
+      <h2>Skills</h2>
+      <ul>
+        <li>JavaScript / HTML / CSS</li>
+        <li>Canvas & Game Development</li>
+        <li>Interactive Web Design</li>
+        <li>Creative Problem Solving</li>
+      </ul>
+      <h2>Interests</h2>
+      <p>When I'm not coding, you can find me exploring retro games, learning new technologies, and building cool projects!</p>
+    </div>
+  </div>
+</div>
+
+<div id="projectsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">Projects</h1>
+      <button class="modal-close" onclick="closeModal('projectsModal')">X</button>
+    </div>
+    <div class="modal-body">
+      <h2>Featured Projects</h2>
+      <p>Here are some of the projects I've worked on:</p>
+
+      <h2>Interactive Portfolio</h2>
+      <p>This very site! A Pokémon-inspired walking simulator that serves as an interactive resume. Built with vanilla JavaScript and HTML5 Canvas.</p>
+
+      <h2>Project Alpha</h2>
+      <p>A web application that does amazing things. Uses modern frameworks and best practices.</p>
+
+      <h2>Project Beta</h2>
+      <p>Another cool project showcasing my skills in creative development and user experience design.</p>
+
+      <p style="margin-top: 30px; color: #FFD700;">More projects coming soon!</p>
+    </div>
+  </div>
+</div>
+
 </body>
 
 <script
@@ -138,6 +332,7 @@
 <script src="data/audio.js"></script>
 <script src="data/collisions.js"></script>
 <script src="data/characters.js"></script>
+<script src="data/buildings.js"></script>
 <script src="js/utils.js"></script>
 <script src="classes.js"></script>
 <script src="index.js"></script>

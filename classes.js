@@ -99,6 +99,25 @@ class Boundary {
   }
 }
 
+class Building {
+  constructor({ position, width, height, name, modalId }) {
+    this.position = position
+    this.width = width
+    this.height = height
+    this.name = name
+    this.modalId = modalId
+  }
+
+  draw() {
+    // Building zone rendering for debugging
+    c.fillStyle = 'rgba(0, 255, 0, 0.3)'
+    c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    c.strokeStyle = 'lime'
+    c.lineWidth = 3
+    c.strokeRect(this.position.x, this.position.y, this.width, this.height)
+  }
+}
+
 class Character extends Sprite {
   constructor({
     position,
