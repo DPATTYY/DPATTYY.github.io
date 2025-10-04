@@ -58,16 +58,53 @@ let isModalOpen = false
 
 function openModal(modalId) {
   const modal = document.getElementById(modalId)
-  if (modal) {
-    modal.classList.add('show')
-    isModalOpen = true
+  const fadeOverlay = document.querySelector('#overlappingDiv')
+
+  if (modal && fadeOverlay) {
+    // Play door opening sound
+    if (audio && audio.doorOpen) {
+      audio.doorOpen.play()
+    }
+
+    // Fade to black
+    gsap.to(fadeOverlay, {
+      opacity: 1,
+      duration: 0.3,
+      onComplete: () => {
+        // Show modal after fade completes
+        modal.classList.add('show')
+        isModalOpen = true
+
+        // Fade back to transparent to reveal modal
+        gsap.to(fadeOverlay, {
+          opacity: 0,
+          duration: 0.3
+        })
+      }
+    })
   }
 }
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId)
-  if (modal) {
-    modal.classList.remove('show')
-    isModalOpen = false
+  const fadeOverlay = document.querySelector('#overlappingDiv')
+
+  if (modal && fadeOverlay) {
+    // Fade to black
+    gsap.to(fadeOverlay, {
+      opacity: 1,
+      duration: 0.3,
+      onComplete: () => {
+        // Hide modal after fade completes
+        modal.classList.remove('show')
+        isModalOpen = false
+
+        // Fade back to transparent to reveal game
+        gsap.to(fadeOverlay, {
+          opacity: 0,
+          duration: 0.3
+        })
+      }
+    })
   }
 }
