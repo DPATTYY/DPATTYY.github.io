@@ -1,8 +1,9 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-canvas.width = 1024
-canvas.height = 576
+// Make canvas fullscreen
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
 
 const collisionsMap = []
 for (let i = 0; i < collisions.length; i += 70) {
@@ -38,12 +39,9 @@ collisionsMap.forEach((row, i) => {
 
 
 // Building interaction zones
-// Buildings use screen coordinates directly (no conversion)
 const buildings = []
 buildingsData.forEach((buildingData) => {
-  buildings.push(
-    new Building(buildingData)
-  )
+  buildings.push(new Building(buildingData))
 })
 
 // Player debug info
@@ -133,8 +131,8 @@ playerRightImage.src = './img/playerRight.png'
 
 const player = new Sprite({
   position: {
-    x: canvas.width / 2 - 192 / 4 / 2,
-    y: canvas.height / 2 - 68 / 2
+    x: 470 + 40 - 192 / 4 / 2, // Center of About Me zone (470 + 40) minus half player width
+    y: 240 + 80 + 20 - 68 / 2   // Below About Me zone (240 + 80) + 20px gap, minus half player height
   },
   image: playerDownImage,
   frames: {
@@ -441,4 +439,10 @@ addEventListener('click', () => {
     audio.Map.play()
     clicked = true
   }
+})
+
+// Handle window resize to keep fullscreen
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
 })
