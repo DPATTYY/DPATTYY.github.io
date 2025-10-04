@@ -13,6 +13,13 @@
 
     body {
       background-color: black;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
     }
 
     h1 {
@@ -28,10 +35,61 @@
     button:hover {
       background-color: #ddd;
     }
+
+    #gameContainer {
+      position: relative;
+    }
+
+    #introBanner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      animation: bannerSequence 5s ease-in-out forwards;
+    }
+
+    #introBanner h1 {
+      color: #FFD700;
+      font-size: 48px;
+      text-align: center;
+      padding: 20px;
+      text-shadow: 4px 4px 0px #000,
+                   -2px -2px 0px #FFA500,
+                   2px 2px 0px #FF8C00;
+      line-height: 1.5;
+    }
+
+    @keyframes bannerSequence {
+      0% {
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
   </style>
 </head>
 
-<div style="display: inline-block; position: relative">
+<body>
+  <div id="introBanner">
+    <h1>Welcome to<br>Dharm's Portfolio</h1>
+  </div>
+
+  <div id="gameContainer" style="display: inline-block; position: relative">
   <div
     id="overlappingDiv"
     style="
@@ -63,6 +121,8 @@
     "
   ></div>
 </div>
+</body>
+
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
   integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
