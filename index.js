@@ -13,7 +13,7 @@ for (let i = 0; i < collisions.length; i += 70) {
 
 const charactersMap = []
 for (let i = 0; i < charactersMapData.length; i += 70) {
-  charactersMap.push(charactersMapData.slice(i, 70 + i))
+  charactersMap.push(charactersMapData.slice(i, 70 + i))  
 }
 console.log(charactersMap)
 
