@@ -154,5 +154,5 @@ export default function LaptopScene() {
     };
   }, []);
 
-  return <div ref={containerRef} id="laptop-scene" />;
+  return <div ref={containerRef} id="laptop-scene" style={{ width: '100%', height: '400px' }} />;
 }

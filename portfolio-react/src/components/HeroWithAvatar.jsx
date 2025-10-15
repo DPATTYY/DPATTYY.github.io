@@ -1,6 +1,14 @@
 import FloatingAvatarHero from './FloatingAvatarHero';
 
-export default function Hero() {
+/**
+ * Alternative Hero component using FloatingAvatarHero instead of LaptopScene
+ *
+ * To use this instead of the current Hero:
+ * 1. In App.jsx, change: import Hero from './components/Hero'
+ *    to: import Hero from './components/HeroWithAvatar'
+ * 2. Make sure you have avatar.glb in public/models/
+ */
+export default function HeroWithAvatar() {
   return (
     <section className="hero">
       <div className="container hero-grid">
@@ -18,7 +26,13 @@ export default function Hero() {
             <span className="chip">UX Research</span>
           </div>
         </div>
-        <FloatingAvatarHero height="500px" floatIntensity={0.05} rotationIntensity={0.6} />
+
+        {/* 3D Avatar Hero */}
+        <FloatingAvatarHero
+          height="500px"
+          floatIntensity={0.25}
+          rotationIntensity={0.3}
+        />
       </div>
     </section>
   );
