@@ -38,7 +38,7 @@ export default function Projects() {
 
         <div className="grid cols-3">
           {projects.map((project, index) => (
-            <article key={index} className="card">
+            <article key={index} className="card card-hover">
               <div className="badges">
                 {project.badges.map((badge, idx) => (
                   <span key={idx} className="badge">{badge}</span>
