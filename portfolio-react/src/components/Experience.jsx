@@ -1,4 +1,25 @@
+import useScrollReveal from '../hooks/useScrollReveal';
+
+function TimelineItem({ exp }) {
+  const [ref, isVisible] = useScrollReveal();
+
+  return (
+    <div
+      ref={ref}
+      className={`tl-item scroll-reveal-left ${isVisible ? 'visible' : ''}`}
+    >
+      <div className="tl-when">{exp.when}</div>
+      <div className="tl-what">
+        <h4>{exp.title}</h4>
+        <p>{exp.description}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function Experience() {
+  const [headerRef, headerVisible] = useScrollReveal();
+
   const experiences = [
     {
       when: 'Aug 2024 – Present',
@@ -31,19 +52,16 @@ export default function Experience() {
   return (
     <section id="experience">
       <div className="container">
-        <div className="section-head">
+        <div
+          ref={headerRef}
+          className={`section-head scroll-reveal ${headerVisible ? 'visible' : ''}`}
+        >
           <h2 className="section-title">Experience</h2>
           <p className="section-desc">A concise timeline of roles, leadership, and impact.</p>
         </div>
         <div className="timeline">
           {experiences.map((exp, index) => (
-            <div key={index} className="tl-item">
-              <div className="tl-when">{exp.when}</div>
-              <div className="tl-what">
-                <h4>{exp.title}</h4>
-                <p>{exp.description}</p>
-              </div>
-            </div>
+            <TimelineItem key={index} exp={exp} />
           ))}
         </div>
       </div>

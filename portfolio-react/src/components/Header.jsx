@@ -1,3 +1,5 @@
+import ThemeToggle from './ThemeToggle';
+
 export default function Header() {
   return (
     <header className="topbar">
@@ -5,12 +7,15 @@ export default function Header() {
         <div className="brand">
           <span>Dharm Patel</span>
         </div>
-        <nav>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#contact">Contact</a>
-        </nav>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

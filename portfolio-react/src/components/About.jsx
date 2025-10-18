@@ -1,8 +1,44 @@
+import useScrollReveal from '../hooks/useScrollReveal';
+
+function AboutCard({ title, description }) {
+  const [ref, isVisible] = useScrollReveal();
+
+  return (
+    <div
+      ref={ref}
+      className={`card scroll-reveal-stagger ${isVisible ? 'visible' : ''}`}
+    >
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
+  );
+}
+
 export default function About() {
+  const [headerRef, headerVisible] = useScrollReveal();
+
+  const cards = [
+    {
+      title: 'Project Leadership',
+      description: 'Agile planning, stakeholder alignment, risk management, and outcomes‑focused delivery.'
+    },
+    {
+      title: 'Product & UX',
+      description: 'User interviews, experiment design, measurement plans, and data‑informed roadmaps.'
+    },
+    {
+      title: 'Full‑Stack Engineering',
+      description: 'React/TypeScript front‑ends, Python/Flask services, SQL data models, CI automation.'
+    }
+  ];
+
   return (
     <section id="about">
       <div className="container">
-        <div className="section-head">
+        <div
+          ref={headerRef}
+          className={`section-head scroll-reveal ${headerVisible ? 'visible' : ''}`}
+        >
           <h2 className="section-title">About</h2>
           <p className="section-desc">
             Blending product sense with engineering discipline. I've managed delivery for cross‑functional teams,
@@ -10,18 +46,9 @@ export default function About() {
           </p>
         </div>
         <div className="grid cols-3">
-          <div className="card">
-            <h3>Project Leadership</h3>
-            <p>Agile planning, stakeholder alignment, risk management, and outcomes‑focused delivery.</p>
-          </div>
-          <div className="card">
-            <h3>Product & UX</h3>
-            <p>User interviews, experiment design, measurement plans, and data‑informed roadmaps.</p>
-          </div>
-          <div className="card">
-            <h3>Full‑Stack Engineering</h3>
-            <p>React/TypeScript front‑ends, Python/Flask services, SQL data models, CI automation.</p>
-          </div>
+          {cards.map((card, index) => (
+            <AboutCard key={index} {...card} />
+          ))}
         </div>
       </div>
     </section>

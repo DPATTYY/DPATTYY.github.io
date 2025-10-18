@@ -1,4 +1,9 @@
+import useScrollReveal from '../hooks/useScrollReveal';
+import useMagneticEffect from '../hooks/useMagneticEffect';
+
 export default function Projects() {
+  const [headerRef, headerVisible] = useScrollReveal();
+
   const projects = [
     {
       badges: ['Community Impact Finalist', 'PM · Front-end'],
@@ -29,7 +34,10 @@ export default function Projects() {
   return (
     <section id="projects">
       <div className="container">
-        <div className="section-head">
+        <div
+          ref={headerRef}
+          className={`section-head scroll-reveal ${headerVisible ? 'visible' : ''}`}
+        >
           <h2 className="section-title">Featured Projects</h2>
           <p className="section-desc">
             A handful of initiatives that showcase delivery, craftsmanship, and measurable impact.
@@ -38,24 +46,38 @@ export default function Projects() {
 
         <div className="grid cols-3">
           {projects.map((project, index) => (
-            <article key={index} className="card card-hover">
-              <div className="badges">
-                {project.badges.map((badge, idx) => (
-                  <span key={idx} className="badge">{badge}</span>
-                ))}
-              </div>
-              <h3 style={{ marginTop: '10px' }}>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="project-meta">
-                <div className="meta-left">{project.tech}</div>
-                <div className="meta-right">
-                  <a href={project.link}>{project.linkText}</a>
-                </div>
-              </div>
-            </article>
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function ProjectCard({ project }) {
+  const [ref, isVisible] = useScrollReveal();
+  const linkRef = useMagneticEffect(0.25);
+
+  return (
+    <article
+      ref={ref}
+      className={`card card-hover scroll-reveal-stagger ${isVisible ? 'visible' : ''}`}
+    >
+      <div className="badges">
+        {project.badges.map((badge, idx) => (
+          <span key={idx} className="badge">{badge}</span>
+        ))}
+      </div>
+      <h3 style={{ marginTop: '10px' }}>{project.title}</h3>
+      <p>{project.description}</p>
+      <div className="project-meta">
+        <div className="meta-left">{project.tech}</div>
+        <div className="meta-right">
+          <a ref={linkRef} href={project.link} className="magnetic">
+            {project.linkText}
+          </a>
+        </div>
+      </div>
+    </article>
   );
 }
