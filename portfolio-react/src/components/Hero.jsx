@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="hero">
       <div className="container hero-grid">
         <div>
-          <div className="eyebrow">IT Project Manager · Full‑Stack Developer · Gaming Fanatic</div>
+          <div className="eyebrow">IT Project Manager · Full‑Stack Developer</div>
           <h1 className="title">Building reliable products and teams that deliver.</h1>
           <p className="subtitle">
             I lead cross‑functional squads, translate user insights into roadmaps, and ship scalable web apps.

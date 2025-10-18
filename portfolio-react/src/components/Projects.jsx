@@ -12,13 +12,13 @@ export default function Projects() {
       badges: ['Team Lead', 'Immersive Tech'],
       title: 'VR Construction Safety Training',
       description: 'Developed an immersive Unity VR training simulator for construction safety awareness. Integrated AI behaviour tracking and scenario-based hazard recognition for workforce upskilling.',
-      tech: '🪄 Unity · C# · XR · AI',
-      link: '#',
-      linkText: 'View Demo→'
+      tech: '🏗️ Unity · C# · XR · AI',
+      link: 'https://github.com/DPATTYY/VR-CONSTRUCTION-SAFETY',
+      linkText: 'View Repo→'
     },
     {
       badges: ['Full Stack', 'AI + UX'],
-      title: 'CS705 Group 7 — Real-Time Survey Emotion Recognition System',
+      title: 'Real-Time Survey Emotion Recognition System',
       description: 'Built a multimodal survey platform combining a Flask API and React front-end for real-time emotion detection. Integrated MediaPipe for face tracking and TorchScript models for classifying seven emotions during user responses.',
       tech: '🧠 Flask · React · PyTorch · MediaPipe',
       link: 'https://github.com/DPATTYY/Multimodal-Survey',
