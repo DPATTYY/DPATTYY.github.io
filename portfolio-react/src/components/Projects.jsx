@@ -1,25 +1,25 @@
 export default function Projects() {
   const projects = [
     {
-      badges: ['Community Impact Finalist', 'PM · Front‑end'],
+      badges: ['Community Impact Finalist', 'PM · Front-end'],
       title: 'UnHinged',
-      description: 'Led Agile delivery for a React/TypeScript + Flask platform with AI conversation generation (Gemma 2B & Llama 3). Designed uptime‑first ops with observability.',
+      description: 'Led Agile delivery for a React/TypeScript + Flask platform with AI conversation generation (Gemma 2B & Llama 3). Designed uptime-first ops with observability.',
       tech: '⚙ React · TypeScript · Flask · SD',
       link: 'https://www.youtube.com/watch?v=hp_7ISEBGRw',
       linkText: 'Watch Demo→'
     },
     {
-      badges: ['Team Lead', 'E‑commerce'],
-      title: 'Steami',
-      description: 'Game‑library commerce with secure auth, responsive UI, and stakeholder‑driven roadmap. Shipped MVP and iterative releases.',
-      tech: '🛒 Flask · JS · SQL',
+      badges: ['Team Lead', 'Immersive Tech'],
+      title: 'VR Construction Safety Training',
+      description: 'Developed an immersive Unity VR training simulator for construction safety awareness. Integrated AI behaviour tracking and scenario-based hazard recognition for workforce upskilling.',
+      tech: '🪄 Unity · C# · XR · AI',
       link: '#',
-      linkText: 'View repo→'
+      linkText: 'View Demo→'
     },
     {
       badges: ['Backend', 'Reliability'],
       title: 'Concert Booking',
-      description: 'Concurrent seat‑reservation middleware in Java with careful state management. Achieved 99.5% uptime through peak loads.',
+      description: 'Concurrent seat-reservation middleware in Java with careful state management. Achieved 99.5% uptime through peak loads.',
       tech: '🎟 Java · Concurrency',
       link: '#',
       linkText: 'View repo→'
