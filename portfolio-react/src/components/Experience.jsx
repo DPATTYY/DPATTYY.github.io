@@ -1,8 +1,8 @@
 export default function Experience() {
   const experiences = [
     {
-      when: 'Aug 2018 – Present',
-      title: 'Checkout Supervisor — Woolworths Group',
+      when: 'Aug 2024 – Present',
+      title: 'Customer Experience Supervisor — Woolworths Group',
       description: 'Orchestrated front‑end operations, supervising team of 6 operators; optimized customer flow and training.'
     },
     {
@@ -22,7 +22,7 @@ export default function Experience() {
     },
     {
       when: 'Jul 2024 – Sep 2024',
-      title: 'User Research — Putti Apps',
+      title: 'User Researcher — Putti Apps',
       description: 'Research initiatives leading to +30% user satisfaction; synthesized insights into roadmap changes.'
     },
     {
