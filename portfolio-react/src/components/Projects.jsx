@@ -17,11 +17,11 @@ export default function Projects() {
       linkText: 'View Demo→'
     },
     {
-      badges: ['Backend', 'Reliability'],
-      title: 'Concert Booking',
-      description: 'Concurrent seat-reservation middleware in Java with careful state management. Achieved 99.5% uptime through peak loads.',
-      tech: '🎟 Java · Concurrency',
-      link: '#',
+      badges: ['Full Stack', 'AI + UX'],
+      title: 'CS705 Group 7 — Real-Time Survey Emotion Recognition System',
+      description: 'Built a multimodal survey platform combining a Flask API and React front-end for real-time emotion detection. Integrated MediaPipe for face tracking and TorchScript models for classifying seven emotions during user responses.',
+      tech: '🧠 Flask · React · PyTorch · MediaPipe',
+      link: 'https://github.com/DPATTYY/Multimodal-Survey',
       linkText: 'View repo→'
     }
   ];
